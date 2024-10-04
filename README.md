@@ -42,7 +42,7 @@ npm install
 Create a `.env` file in the root directory with the following variables:
 
 ```
-PORT=3001
+PORT=3005
 MONGODB_URI=mongodb://localhost:27017/userdb
 JWT_SECRET=your_jwt_secret
 RABBITMQ_URL=amqp://localhost
@@ -114,7 +114,7 @@ npm install
 Create a `.env` file in the root directory with the following variables:
 
 ```
-PORT=3002
+PORT=3006
 MONGODB_URI=mongodb://localhost:27017/productdb
 JWT_SECRET=your_jwt_secret
 RABBITMQ_URL=amqp://localhost
@@ -181,7 +181,7 @@ npm install
 Create a `.env` file in the root directory with the following variables:
 
 ```
-PORT=3003
+PORT=3002
 MONGODB_URI=mongodb://localhost:27017/orderdb
 JWT_SECRET=your_jwt_secret
 RABBITMQ_URL=amqp://localhost
@@ -321,7 +321,7 @@ services:
   user-service:
     build: ./user-service
     ports:
-      - '3001:3001'
+      - '3005:3005'
     environment:
       - PORT=3001
       - MONGODB_URI=mongodb://mongodb:27017/userdb
@@ -334,7 +334,7 @@ services:
   product-service:
     build: ./product-service
     ports:
-      - '3002:3002'
+      - '3006:3006'
     environment:
       - PORT=3002
       - MONGODB_URI=mongodb://mongodb:27017/productdb
@@ -347,7 +347,7 @@ services:
   order-service:
     build: ./order-service
     ports:
-      - '3003:3003'
+      - '3002:3002'
     environment:
       - PORT=3003
       - MONGODB_URI=mongodb://mongodb:27017/orderdb
