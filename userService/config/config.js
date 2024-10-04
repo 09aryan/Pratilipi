@@ -1,2 +1,4 @@
-export const jwtSecret = 'aryan';
+module.exports = {
+    jwtSecret: 'aryan',
+  };
   

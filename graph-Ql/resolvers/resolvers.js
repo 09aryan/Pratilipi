@@ -8,8 +8,15 @@ module.exports = {
     user: async (_, { id }, { dataSources }) => {
       return dataSources.userAPI.getUserById(id);
     },
-    products: async (_, __, { dataSources }) => {
-      return dataSources.productAPI.getProducts();
+    products: async (_, __, { dataSources, user }) => {
+      // Ensure user is authenticated and pass the token
+      if (!user) throw new Error('Authentication required');
+      try {
+        return await dataSources.productAPI.getProducts(user.token);
+      } catch (error) {
+        console.error('Failed to fetch products:', error.message);
+        throw new Error('Failed to fetch products');
+      }
     },
     product: async (_, { id }, { dataSources }) => {
       return dataSources.productAPI.getProductById(id);
@@ -30,6 +37,7 @@ module.exports = {
     loginUser: async (_, { input }, { dataSources }) => {
       return dataSources.userAPI.loginUser(input);
     },
+    
     createProduct: async (_, { input }, { dataSources, user }) => {
       if (!user) {
         throw new Error('Authentication required');
@@ -73,10 +81,11 @@ module.exports = {
 
       return order;
     },
-    updateProduct: async (_, { id, input }, { dataSources, user }) => {
-      if (!user) throw new Error('Authentication required');
-      return dataSources.productAPI.updateProduct(id, input, user.token);
-    },
+    // updateProduct: async (_, { id, input }, { dataSources, user }) => {
+    //   if (!user) throw new Error('Authentication required');
+    //   return dataSources.productAPI.updateProduct(id, input, user.token);
+    // },
+    
     updateOrderStatus: async (_, { id, status }, { dataSources, user }) => {
       if (!user) throw new Error('Authentication required');
 

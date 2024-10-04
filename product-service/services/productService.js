@@ -66,11 +66,12 @@ exports.getAllProducts = async () => {
 };
 
 exports.updateInventory = async (productId, quantityChange) => {
+  console.log('Product ID:', productId);  // Add this line to check the productId
   const product = await Product.findById(productId);
-//   if (!product) {
-//     throw new Error('Product not found');
-//   }
-console.log(product);
+  console.log('Found product:', product);  // Add this line to check if the product is found
+  if (!product) {
+    throw new Error('Product not found');
+  }
   product.quantity += quantityChange;
   await product.save();
 
@@ -82,3 +83,4 @@ console.log(product);
 
   return product;
 };
+

@@ -50,9 +50,23 @@ class ProductAPI {
     this.baseURL = process.env.PRODUCT_SERVICE_URL;
   }
 
-  async getProducts() {
-    const response = await axios.get(`${this.baseURL}/products`);
-    return response.data.map((product) => this.productReducer(product));
+  async getProducts(token) {
+    try {
+      const response = await axios.get(`${this.baseURL}/products`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data.map((product) => this.productReducer(product));
+    } catch (error) {
+      if (error.response) {
+        console.error('Error in getProducts API call:', {
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else {
+        console.error('Error in getProducts API call:', error.message);
+      }
+      throw new Error('Failed to fetch products');
+    }
   }
 
   async getProductById(id) {
