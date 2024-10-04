@@ -396,3 +396,6 @@ This will start all services, including MongoDB and RabbitMQ.
 ###
 
 By following these instructions, you will be able to set up and run the entire microservices architecture and GraphQL gateway.
+![image](https://github.com/user-attachments/assets/258dc88c-c1e6-476a-abeb-491a2c25533b)
+
+
