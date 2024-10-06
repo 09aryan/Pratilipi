@@ -309,7 +309,7 @@ Use the GraphQL Playground to run queries and mutations or use Postman for testi
 
 ---
 
-# **Docker Setup Instructions (Optional)**
+# **Docker Setup Instructions **
 
 To simplify the setup of all services, you can use Docker and Docker Compose to run all services, MongoDB, and RabbitMQ in containers.
 
